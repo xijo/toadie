@@ -14,4 +14,10 @@ Gem::Specification.new do |gem|
   gem.name          = "toadie"
   gem.require_paths = ["lib"]
   gem.version       = Toadie::VERSION
+
+  gem.add_runtime_dependency 'slop', '~> 3.3.3'
+  gem.add_runtime_dependency 'slim'
+
+  gem.add_development_dependency 'sprockets'
+  gem.add_development_dependency 'sass'
 end

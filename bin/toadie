@@ -2,5 +2,22 @@
 $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib')))
 
 require 'toadie'
+require 'slop'
 
-Toadie::Runner.run # TODO missing options right now
+opts = Slop.parse do
+  banner "Toadie, todo grepper, blamer, analyzer\n"
+  on :name=, 'Your name'
+  on :i, :input, 'Input directory/file', :argument => :optional
+  on :v, :verbose, 'Enable verbose mode'
+end
+
+puts opts.help
+
+# if ARGV is `--name Lee -v`
+opts.verbose?  #=> true
+opts.password? #=> false
+opts[:name]    #=> 'lee'
+
+
+
+Toadie::Runner.run

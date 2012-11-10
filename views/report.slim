@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title Toadie report
+    meta name="keywords" content="template language"
+    meta name="author" content="Toadwart"
+    / link rel="icon" type="image/png" href=file_path("favicon.png")
+
+  body
+    h1 Markup examples
+
+    #content
+      p This example shows you how a basic Slim file looks like.
+
+    = Toadie.output_path
+
+    - grouped.each do |author, todos|
+      h2= author
+      ul
+        - todos.each do |todo|
+          li= todo
