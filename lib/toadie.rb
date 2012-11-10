@@ -2,7 +2,7 @@ require 'toadie/version'
 require 'toadie/todo'
 require 'toadie/todolist'
 require 'toadie/blame'
-require 'toadie/formatter'
+require 'toadie/report'
 require 'toadie/runner'
 require 'toadie/configuration'
 
