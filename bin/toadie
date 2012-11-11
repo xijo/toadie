@@ -17,7 +17,7 @@ end
 # opts.password? #=> false
 # opts[:name]    #=> 'lee'
 
-config_file = opts[:config] || File.join(Toadie.root, '.toadierc')
+config_file = opts[:config] || File.join(Toadie.root, '.toadie.json')
 if File.exist?(config_file)
   config = JSON.parse(File.read(config_file))
   Array(config["authors"]).each do |attributes|
