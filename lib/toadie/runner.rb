@@ -4,7 +4,7 @@ module Toadie
       results = IO.popen('grep TODO -rn --include=\*.{rb,haml,erb,feature} .').readlines
       list = Todolist.new(results)
 
-      puts Formatter.format(list)
+      Report.publish(list)
     end
   end
 end
