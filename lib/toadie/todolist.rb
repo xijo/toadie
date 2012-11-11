@@ -8,7 +8,11 @@ module Toadie
     end
 
     def grouped
-      todos.group_by(&:author)
+      @grouped ||= Hash[todos.group_by(&:responsible).sort_by { |k, v| -v.size }]
+    end
+
+    def size
+      todos.size
     end
   end
 end

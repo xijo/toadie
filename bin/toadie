@@ -3,21 +3,24 @@ $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib
 
 require 'toadie'
 require 'slop'
+require 'json'
 
 opts = Slop.parse do
   banner "Toadie, todo grepper, blamer, analyzer\n"
-  on :name=, 'Your name'
-  on :i, :input, 'Input directory/file', :argument => :optional
-  on :v, :verbose, 'Enable verbose mode'
+  on :c, :config, 'Configuration file', :argument => :optional
 end
 
-puts opts.help
+# puts opts.help
 
-# if ARGV is `--name Lee -v`
-opts.verbose?  #=> true
-opts.password? #=> false
-opts[:name]    #=> 'lee'
+# # if ARGV is `--name Lee -v`
+# opts.verbose?  #=> true
+# opts.password? #=> false
+# opts[:name]    #=> 'lee'
 
-
+config_file = opts[:config] || File.join(Toadie.root, '.toadierc')
+if File.exist?(config_file)
+  config = JSON.parse(File.read(config_file))
+  Toadie::Author.build_collection(config["authors"])
+end
 
 Toadie::Runner.run

@@ -1,17 +1,15 @@
 module Toadie
   class Blame
-    attr_accessor :content
+    attr_accessor :content, :author
 
     def initialize(file, line)
       self.content = IO.popen("git blame -p #{file} -L#{line},#{line}").read
-    end
-
-    def author
-      content and content.match(/author (.*)/)[1]
-    end
-
-    def author_email
-      content and content.match(/author-mail (.*)/)[1]
+      if content
+        self.author = Author.find(
+          content.match(/author-mail <(.*)>/)[1],
+          :name  => content.match(/author (.*)/)[1]
+        )
+      end
     end
   end
 end
