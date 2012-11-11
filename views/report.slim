@@ -2,20 +2,89 @@ doctype html
 html
   head
     title Toadie report
-    meta name="keywords" content="template language"
-    meta name="author" content="Toadwart"
-    / link rel="icon" type="image/png" href=file_path("favicon.png")
+    meta name='keywords' content='template language'
+    meta name='author' content='Toadwart'
+    link href=Toadie.assets_path('bootstrap.min.css') rel='stylesheet'
+    link href=Toadie.assets_path('toadie.css') rel='stylesheet'
+    script src=Toadie.assets_path('jquery-1.8.2.min.js')
+    script src=Toadie.assets_path('bootstrap.min.js')
 
   body
-    h1 Markup examples
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          a class="brand" href="#" Toadie
 
-    #content
-      p This example shows you how a basic Slim file looks like.
+    .container
+      h1 Report
+      p
+        ' Toadie searched in
+        code= Toadie.root
+        '  and found #{size}
+        span.label TODO
+        '  tags, broken down by author email as follows:
 
-    = Toadie.output_path
+      .progress
+        - grouped.each_with_index do |group, index|
+          - author, todos = group
+          - percent = ((todos.size / size.to_f) * 100).round(2)
+          .bar style="width: #{percent}%;" rel='tooltip' title="#{author}, #{todos.size} hits, #{percent}%" data-placement='bottom' class=%w(bar-danger bar-success bar-info bar-warning)[index%5]
+            = author if percent > 5
 
-    - grouped.each do |author, todos|
-      h2= author
-      ul
-        - todos.each do |todo|
-          li= todo
+      .tabbable.tabs-left
+        ul.nav.nav-tabs
+          - grouped.each do |author, todos|
+            li
+              a href="##{author.identifier}_tab" data-toggle='tab'
+                span.badge=' todos.size
+                =' author
+
+        .tab-content
+          - grouped.each do |author, todos|
+            .tab-pane id="#{author.identifier}_tab"
+              .alert.alert-info
+                strong=' author.name
+                dl
+                  - if !author.emails.empty?
+                    dt emails
+                    dd= author.emails * ', '
+                  - if !author.nicknames.empty?
+                    dt nicknames
+                    dd= author.nicknames * ', '
+              dl
+                - todos.each do |todo|
+                  blockquote
+                    p= todo
+                    - if todo.assigned_by
+                      span.muted
+                        ' assigned by
+                      span.label.label-warning
+                        =' todo.assigned_by
+                    small= todo.file
+
+
+    - if false
+      - grouped.each do |author, todos|
+        h2= author
+        a href="##{author.gsub(/\W/, '')}" role="button" class="btn" data-toggle="modal" #{todos.size} Todos
+
+        .modal.hide tabindex='-1' role='dialog' id=author.gsub(/\W/, '')
+          .modal-header
+            button type='button' class='close' data-dismiss='modal' &times;
+            h3= author
+
+          .modal-body
+            dl
+              - todos.each do |todo|
+                dt= todo.file
+                dd
+                  = todo
+                  - if todo.assigned_by
+                    span.label.label-warning= todo.assigned_by
+
+
+          .modal-footer
+            button.btn data-dismiss='modal' Close
+
+  javascript:
+    $('[rel=tooltip]').tooltip()
