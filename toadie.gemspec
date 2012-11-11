@@ -18,6 +18,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'slop', '~> 3.3.3'
   gem.add_runtime_dependency 'slim'
 
-  gem.add_development_dependency 'sprockets'
-  gem.add_development_dependency 'sass'
+  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'simplecov'
 end

@@ -3,8 +3,7 @@ module Toadie
     attr_accessor :todos
 
     def initialize(raw_todos)
-      # raw format from blame is: file:line:information
-      self.todos = raw_todos.map { |result| Todo.new(*result.split(':', 3)) }
+      self.todos = raw_todos.map { |opts| Todo.new(*opts) }
     end
 
     def grouped

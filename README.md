@@ -16,6 +16,12 @@ Or install it yourself as:
 
     $ gem install toadie
 
+## Build status
+
+![toadie build status][1]
+
+ [1]:http://travis-ci.org/xijo/toadie.png
+
 ## Usage
 
 TODO: Write usage instructions here

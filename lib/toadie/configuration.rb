@@ -21,5 +21,13 @@ module Toadie
     def version
       Toadie::VERSION
     end
+
+    def test?
+      @test
+    end
+
+    def test=(value)
+      @test = value
+    end
   end
 end

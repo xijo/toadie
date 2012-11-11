@@ -28,7 +28,7 @@ html
         - grouped.each_with_index do |group, index|
           - author, todos = group
           - percent = ((todos.size / size.to_f) * 100).round(2)
-          .bar style="width: #{percent}%;" rel='tooltip' title="#{author}, #{todos.size} hits, #{percent}%" data-placement='bottom' class=%w(bar-danger bar-success bar-info bar-warning)[index%5]
+          a.bar href="##{author.identifier}_tab" data-toggle='tab' style="width: #{percent}%;" rel='tooltip' title="#{author}, #{todos.size} hits, #{percent}%" data-placement='bottom' class=%w(bar-danger bar-success bar-info bar-warning)[index%5]
             = author if percent > 5
 
       .tabbable.tabs-left
@@ -40,27 +40,30 @@ html
                 =' author
 
         .tab-content
+          .tab-pane.active
+            | Erklaerung und so weiter ganz klasse und alles..
+
           - grouped.each do |author, todos|
             .tab-pane id="#{author.identifier}_tab"
               .alert.alert-info
-                strong=' author.name
-                dl
+                p.lead=' author.name
+                dl.dl-horizontal
                   - if !author.emails.empty?
-                    dt emails
+                    dt Email adresses
                     dd= author.emails * ', '
                   - if !author.nicknames.empty?
-                    dt nicknames
+                    dt Nicknames
                     dd= author.nicknames * ', '
-              dl
-                - todos.each do |todo|
-                  blockquote
-                    p= todo
-                    - if todo.assigned_by
-                      span.muted
-                        ' assigned by
-                      span.label.label-warning
-                        =' todo.assigned_by
-                    small= todo.file
+
+              - todos.each do |todo|
+                blockquote
+                  p= todo
+                  - if todo.assigned_by
+                    span.muted
+                      ' assigned by
+                    span.label.label-warning
+                      =' todo.assigned_by
+                  small= todo.file
 
 
     - if false

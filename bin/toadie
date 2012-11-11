@@ -20,7 +20,9 @@ end
 config_file = opts[:config] || File.join(Toadie.root, '.toadierc')
 if File.exist?(config_file)
   config = JSON.parse(File.read(config_file))
-  Toadie::Author.build_collection(config["authors"])
+  Array(config["authors"]).each do |attributes|
+    Toadie::Author.create(attributes)
+  end
 end
 
-Toadie::Runner.run
+Toadie::Run.new.start

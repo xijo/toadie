@@ -4,14 +4,15 @@ require 'toadie/todolist'
 require 'toadie/blame'
 require 'toadie/author'
 require 'toadie/report'
-require 'toadie/runner'
+require 'toadie/run'
 require 'toadie/configuration'
+require 'toadie/errors'
+require 'toadie/fake_results'
 
 require 'slim'
 require 'fileutils'
 
 module Toadie
-  # Your code goes here...
 end
 
 Toadie.send :extend, Toadie::Configuration
