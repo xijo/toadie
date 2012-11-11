@@ -5,27 +5,33 @@ module Toadie
     def initialize(file, line, text)
       self.file  = file
       self.line  = line
-      self.text  = text.sub(/#\s*TODO/, '').strip
+      self.text  = text.to_s.sub(/#\s*TODO/, '').strip
       self.blame = Blame.new(file, line)
+      @reassignment = find_reassignment
     end
 
     def to_s
       text.nil? || text.empty? ? '<no content>' : text
     end
 
+    def reassigned?
+      !!@reassignment
+    end
+
     def responsible
-      assign || blame.author
+      @reassignment || blame.author
     end
 
-    def assigned_by
-      blame.author if assign
+    def author
+      blame.author
     end
 
-    def assign # way to often..
-      @assign ||= Author.all.find { |author|
+    private
+
+    def find_reassignment
+      Author.all.find do |author|
         author.nicknames.any? { |nickname| text.include?(nickname) }
-      }
-      # nil # TODO implement me
+      end
     end
   end
 end

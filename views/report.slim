@@ -58,11 +58,11 @@ html
               - todos.each do |todo|
                 blockquote
                   p= todo
-                  - if todo.assigned_by
+                  - if todo.reassigned?
                     span.muted
                       ' assigned by
                     span.label.label-warning
-                      =' todo.assigned_by
+                      =' todo.author
                   small= todo.file
 
 
