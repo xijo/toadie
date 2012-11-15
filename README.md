@@ -4,9 +4,7 @@ Toadie greps your (ruby) source code for TODO tags and associate them with your 
 
 It's meant to be part of a CI process, so everyone should be able to find her/his open TODOs.
 
-![toadie build status][1]
-
- [1]:http://travis-ci.org/xijo/toadie.png
+[![Build Status](https://secure.travis-ci.org/xijo/toadie.png?branch=master)](https://travis-ci.org/xijo/toadie)
 
 ## Features
 
@@ -81,3 +79,8 @@ The TODO will be assigned to Riker.
 
 1. Add customizable file endings to the configuration
 2. Make output directory/format configurable
+3. Do a little benchmarking and profiling
+4. Refine descriptions and texts
+5. Detect multiline TODOs
+6. Support more languages
+7. Link source to github
