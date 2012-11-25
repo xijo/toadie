@@ -4,10 +4,10 @@ html
     title Toadie report
     meta name='keywords' content='template language'
     meta name='author' content='Toadwart'
-    link href=Toadie.assets_path('bootstrap.min.css') rel='stylesheet'
-    link href=Toadie.assets_path('toadie.css') rel='stylesheet'
-    script src=Toadie.assets_path('jquery-1.8.2.min.js')
-    script src=Toadie.assets_path('bootstrap.min.js')
+    link href="./assets/#{Toadie.version}/bootstrap.min.css" rel='stylesheet'
+    link href="./assets/#{Toadie.version}/toadie.css" rel='stylesheet'
+    script src="./assets/#{Toadie.version}/jquery-1.8.2.min.js"
+    script src="./assets/#{Toadie.version}/bootstrap.min.js"
 
   body
     .navbar.navbar-fixed-top
@@ -41,7 +41,6 @@ html
 
         .tab-content
           .tab-pane.active
-            | Erklaerung und so weiter ganz klasse und alles..
 
           - grouped.each do |author, todos|
             .tab-pane id="#{author.identifier}_tab"
@@ -63,31 +62,10 @@ html
                       ' assigned by
                     span.label.label-warning
                       =' todo.author
-                  small= todo.file
-
-
-    - if false
-      - grouped.each do |author, todos|
-        h2= author
-        a href="##{author.gsub(/\W/, '')}" role="button" class="btn" data-toggle="modal" #{todos.size} Todos
-
-        .modal.hide tabindex='-1' role='dialog' id=author.gsub(/\W/, '')
-          .modal-header
-            button type='button' class='close' data-dismiss='modal' &times;
-            h3= author
-
-          .modal-body
-            dl
-              - todos.each do |todo|
-                dt= todo.file
-                dd
-                  = todo
-                  - if todo.assigned_by
-                    span.label.label-warning= todo.assigned_by
-
-
-          .modal-footer
-            button.btn data-dismiss='modal' Close
+                  small
+                    = todo.file
+                    |:
+                    = todo.line
 
   javascript:
     $('[rel=tooltip]').tooltip()
