@@ -10,6 +10,14 @@ module Toadie
       File.join(Toadie.output_path, 'assets', Toadie.version, filename)
     end
 
+    def file_extensions=(values)
+      @file_extensions = Array(values)
+    end
+
+    def file_extensions
+      @file_extensions
+    end
+
     def output_dir
       'toadie'
     end

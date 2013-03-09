@@ -20,6 +20,7 @@ end
 config_file = opts[:config] || File.join(Toadie.root, '.toadie.json')
 if File.exist?(config_file)
   config = JSON.parse(File.read(config_file))
+  Toadie.file_extensions = Array(config["file_extensions"])
   Array(config["authors"]).each do |attributes|
     Toadie::Author.create(attributes)
   end

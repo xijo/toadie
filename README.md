@@ -33,9 +33,11 @@ It will produce the html output into a folder called 'toadie', having a index.ht
 
     $ open toadie/index.html
 
-## Configure team members
+## Configuration
 
-By default you will not need to configure anything. Toadie will detect authors by using git and display TODOs accordingly.
+### Configure team members
+
+By default you will not need to configure any team members. Toadie will detect authors by using git and display TODOs accordingly.
 
 However, to have multiple mail addresses or assignment tags for each team member create a `.toadie.json` file.
 
@@ -66,6 +68,16 @@ The given nicknames will be used to find TODOs assigned to this person. For exam
 
 The TODO will be assigned to Riker.
 
+### Configure file extensions
+
+By default toadie will try to find any TODOs in the given directory. Sometimes it might be helpful to reduce this search to files with a specific file ending. This can be done by setting the `file_extensions` configuration option:
+
+```json
+{
+  "file_extensions": ["rb", "js", "py"]
+}
+
+This example will only search for ruby, python and javascript files and skips e.g. log files.
 
 ## Contributing
 
@@ -77,10 +89,10 @@ The TODO will be assigned to Riker.
 
 ## Todos (haha)
 
-1. Add customizable file endings to the configuration
-2. Make output directory/format configurable
-3. Do a little benchmarking and profiling
-4. Refine descriptions and texts
-5. Detect multiline TODOs
-6. Support more languages
-7. Link source to github
+1. Make output directory/format configurable
+2. Do a little benchmarking and profiling
+3. Refine descriptions and texts
+4. Detect multiline TODOs
+5. Support more languages
+6. Link source to github
+7. Configurable TODO tag (e.g. XXX)

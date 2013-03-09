@@ -4,7 +4,8 @@ module Toadie
       if Toadie.test?
         Toadie::FakeResults.extract_todos
       else
-        IO.popen("grep TODO -rn --include=*.rb --include=*.erb --include=*.haml --include=*.slim --include=*.feature} #{Toadie.root}").readlines
+        grep_includes = Toadie.file_extensions.inject('') { |m, ex| m + "--include=*.#{ex} " }
+        IO.popen("grep TODO -rn #{grep_includes} #{Toadie.root}").readlines
       end
     end
 
