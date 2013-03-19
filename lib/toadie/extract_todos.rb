@@ -5,7 +5,8 @@ module Toadie
         Toadie::FakeResults.extract_todos
       else
         grep_includes = Toadie.file_extensions.inject('') { |m, ex| m + "--include=*.#{ex} " }
-        IO.popen("grep TODO -rn #{grep_includes} #{Toadie.root}").readlines
+        marker_regexp = Toadie.todo_markers * '|'
+        IO.popen("egrep \"#{marker_regexp}\" -rn #{grep_includes} #{Toadie.root}").readlines
       end
     end
 

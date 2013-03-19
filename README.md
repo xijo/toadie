@@ -95,4 +95,3 @@ This example will only search for ruby, python and javascript files and skips e.
 4. Detect multiline TODOs
 5. Support more languages
 6. Link source to github
-7. Configurable TODO tag (e.g. XXX)

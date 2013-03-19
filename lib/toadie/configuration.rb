@@ -11,11 +11,23 @@ module Toadie
     end
 
     def file_extensions=(values)
-      @file_extensions = Array(values)
+      @file_extensions = values
     end
 
     def file_extensions
       @file_extensions
+    end
+
+    def default_todo_markers
+      [ 'TODO' ]
+    end
+
+    def todo_markers=(values)
+      @todo_markers = values
+    end
+
+    def todo_markers
+      @todo_markers || Toadie.default_todo_markers
     end
 
     def output_dir
