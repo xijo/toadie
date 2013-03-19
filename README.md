@@ -76,6 +76,7 @@ By default toadie will try to find any TODOs in the given directory. Sometimes i
 {
   "file_extensions": ["rb", "js", "py"]
 }
+```
 
 This example will only search for ruby, python and javascript files and skips e.g. log files.
 
