@@ -6,6 +6,8 @@ It's meant to be part of a CI process, so everyone should be able to find her/hi
 
 [![Build Status](https://secure.travis-ci.org/xijo/toadie.png?branch=master)](https://travis-ci.org/xijo/toadie)
 
+[![Gem Version](https://badge.fury.io/rb/toadie.png)](http://badge.fury.io/rb/toadie)
+
 ## Features
 
  - grep rb, erb, haml, slim and feature files
