@@ -4,7 +4,7 @@ Toadie greps your (ruby) source code for TODO tags and associate them with your 
 
 It's meant to be part of a CI process, so everyone should be able to find her/his open TODOs.
 
-[![Build Status](https://secure.travis-ci.org/xijo/toadie.png?branch=master)](https://travis-ci.org/xijo/toadie)
+[![Build Status](https://secure.travis-ci.org/xijo/toadie.png?branch=master)](https://travis-ci.org/xijo/toadie) [![Gem Version](https://badge.fury.io/rb/toadie.png)](http://badge.fury.io/rb/toadie)
 
 ## Features
 
