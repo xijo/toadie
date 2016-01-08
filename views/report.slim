@@ -36,8 +36,8 @@ html
           - grouped.each do |author, todos|
             li
               a href="##{author.identifier}_tab" data-toggle='tab'
-                span.badge=' todos.size
-                =' author
+                span.badge=> todos.size
+                => author
 
         .tab-content
           .tab-pane.active
@@ -45,7 +45,7 @@ html
           - grouped.each do |author, todos|
             .tab-pane id="#{author.identifier}_tab"
               .alert.alert-info
-                p.lead=' author.name
+                p.lead=> author.name
                 dl.dl-horizontal
                   - if !author.emails.empty?
                     dt Email adresses
@@ -61,7 +61,7 @@ html
                     span.muted
                       ' assigned by
                     span.label.label-warning
-                      =' todo.author
+                      => todo.author
                   small
                     = todo.file
                     |:

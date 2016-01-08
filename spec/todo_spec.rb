@@ -5,14 +5,14 @@ describe Toadie::Todo do
 
   describe "#initialize" do
     it "assigns the given attributes" do
-      todo.file.should == 'fakefile'
-      todo.line.should == 42
-      todo.text.should == 'TODO text'
+      expect(todo.file).to eq 'fakefile'
+      expect(todo.line).to eq 42
+      expect(todo.text).to eq 'TODO text'
     end
 
     it "converts provided input into string without failing" do
       todo = Toadie::Todo.new('fakefile', 42, self.class)
-      todo.text.should be_a String
+      expect(todo.text).to be_a String
     end
   end
 
@@ -21,19 +21,19 @@ describe Toadie::Todo do
     todo    = Toadie::Todo.new('fakefile', 42, 'TODO jean-luc go to the doctor!')
     crusher = Toadie::Author.find_by_email('crusher@uss-enterprise.com') # created by fake blame
 
-    todo.author.should      == crusher
-    todo.responsible.should == picard
-    todo.should be_reassigned
+    expect(todo.author).to eq crusher
+    expect(todo.responsible).to eq picard
+    expect(todo).to be_reassigned
   end
 
   describe "#to_s" do
     it "returns the text is present" do
-      todo.to_s.should == todo.text
+      expect(todo.to_s).to eq todo.text
     end
 
     it "returns a no-text message otherwise" do
       todo.text = ''
-      todo.to_s.should == '<no content>'
+      expect(todo.to_s).to eq '<no content>'
     end
   end
 end

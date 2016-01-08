@@ -5,17 +5,9 @@ require 'toadie'
 require 'slop'
 require 'json'
 
-opts = Slop.parse do
-  banner "Toadie, todo grepper, blamer, analyzer\n"
-  on :c, :config, 'Configuration file', :argument => :optional
+opts = Slop.parse do |o|
+  o.string '-c', '--config', 'configuration file'
 end
-
-# puts opts.help
-
-# # if ARGV is `--name Lee -v`
-# opts.verbose?  #=> true
-# opts.password? #=> false
-# opts[:name]    #=> 'lee'
 
 config_file = opts[:config] || File.join(Toadie.root, '.toadie.json')
 if File.exist?(config_file)

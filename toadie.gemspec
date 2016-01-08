@@ -16,6 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = Toadie::VERSION
 
   gem.add_runtime_dependency 'slim'
+  gem.add_runtime_dependency 'slop'
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'
